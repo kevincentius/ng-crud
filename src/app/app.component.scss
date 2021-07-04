@@ -1,0 +1,23 @@
+
+@import '../styles.scss';
+
+$person-list-max-width: 250px;
+$person-details-max-width: 450px;
+
+.full-horizontal-layout {
+  @extend .full-box;
+  
+  display: flex;
+  justify-content: center;
+  padding: 30px;
+}
+
+.person-list-container {
+  flex-grow: 1;
+  max-width: $person-list-max-width;
+}
+
+.person-details-container {
+  flex-grow: 1;
+  max-width: $person-details-max-width;
+}

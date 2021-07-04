@@ -83,8 +83,8 @@
       - personDetails
         - mock text field directive
         - actually form is initialized on showPerson() because "view mode" also uses the form
-        - ...in reality I did implementation at the same time as writing the tests because I am still learning how to write the tests
-          - a lot of debugging the tests
+        - ...in the end I did implementation at the same time as writing the tests because I am still learning how to write the tests
+          - a lot of debugging the tests (detectChanges + whenReady)
           - i rely a lot on the test list above whenever I lose my train of thought :) 
 
       - personList
@@ -109,3 +109,4 @@
   - layouting strategy:
       - most non-inline elements will @extend .full-box in its :host
       - parent lays its children out using flex boxes (can be vertical/horizontal)
+

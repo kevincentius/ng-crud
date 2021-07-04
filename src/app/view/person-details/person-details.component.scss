@@ -1,0 +1,9 @@
+
+@import '../../../styles.scss';
+
+:host {
+    @extend .full-box;
+    @extend .light-panel;
+}
+
+.v-spacer { height: 30px; }

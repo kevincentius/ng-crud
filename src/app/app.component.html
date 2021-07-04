@@ -1,10 +1,18 @@
 
-<app-person-list
-  #personList
-  (clickPerson)="personDetails.showPerson($event)"
-></app-person-list>
+<div class="full-horizontal-layout">
+  <div class="person-list-container">
+    <app-person-list
+      #personList
+      (clickPerson)="personDetails.showPerson($event)"
+    ></app-person-list>
+  </div>
 
-<app-person-details
-  #personDetails
-  (deletePerson)="personList.deletePerson($event)"
-></app-person-details>
+  <div style="width: 30px;"></div>
+
+  <div class="person-details-container">
+    <app-person-details
+      #personDetails
+      (deletePerson)="personList.deletePerson($event)"
+    ></app-person-details>
+  </div>
+</div>

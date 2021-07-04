@@ -1,0 +1,14 @@
+
+@import '../../../styles.scss';
+
+:host {
+    @extend .full-box;
+    @extend .light-panel;
+}
+
+.list-item {
+    cursor: pointer;
+}
+.list-item:hover {
+    background: #ddd;
+}

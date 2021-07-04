@@ -1,0 +1,14 @@
+
+:host {
+  display: flex;
+  padding: 2px;
+}
+
+.caption {
+  width: 100px;
+}
+
+.value, .value-input {
+  flex-grow: 1;
+  box-sizing: border-box;
+}
