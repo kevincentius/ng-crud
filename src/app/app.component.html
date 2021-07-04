@@ -1,0 +1,10 @@
+
+<app-person-list
+  #personList
+  (clickPerson)="personDetails.showPerson($event)"
+></app-person-list>
+
+<app-person-details
+  #personDetails
+  (deletePerson)="personList.deletePerson($event)"
+></app-person-details>

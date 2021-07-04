@@ -1,0 +1,111 @@
+
+- update ng cli
+    - stackoverflow:
+        npm uninstall -g @angular/cli
+        npm install -g @angular/cli@latest
+
+- ng new crud --directory ./
+    - SCSS - Sass but same format as in browser debugger
+
+- git
+    - git remote add origin git@github.com:kevincentius/angular-crud.git
+    - git push --set-upstream origin master
+
+- npm start
+    - running :)
+
+- sketching
+    - idea: details & edit components have similar structure
+        - make it in 1 component with boolean toggle "editMode"
+        - have a  text field component that can toggle between being a label vs editable text field
+
+    - app component (full window)
+        - person list component (left)
+            > listPersons()
+        - person details component (right):
+            - "view mode"
+                - person object already loaded
+            - "edit mode"
+                > updatePerson(person)
+            - delete person (button)
+                > deletePerson(id)
+
+    - 3 methods in the REST API
+
+- create mock service
+
+- unit tests
+    - generate all the components first
+        - app, personList, personDetails, textField
+
+    - listing the tests before writing them:
+        - app
+            - should contain personList
+            - when personList (clickPerson) is emitted, personDetails.showPerson(...) must be called
+
+        - personList
+            - should call personService.listPersons()
+            - should emit (clickPerson) when a person item is clicked
+            *- should remove the Person from the list when deletePerson(id) method is called
+
+        - personDetails
+            - should start with "view mode", nothing displayed
+            - when showPerson(...) is called:
+                - should display person details
+                - should show edit / delete buttons
+            - when edit button is clicked:
+                - should initialize form object based on person data
+                - should start "edit mode":
+                    - all text fields should be in edit mode
+                    - should show submit button
+            - when submit button is clicked:
+                - should call personService.updatePerson(...)
+                - should exit "edit mode":
+                    - all text fields should be in view mode
+                    - should show edit / delete buttons
+            *- when delete button is clicked:
+              *- should call personService.deletePerson(id)
+              *- should emit (delete) event with person id
+        
+        - textField
+            - when editMode is set to true, should show input element instead of div
+            - when editMode is set to false, should show div element instead of input
+            
+            - value should have two-way binding (assert div & input elements)
+
+    - writing the tests... start from the bottom of the hierarchy? I.e. textField
+      - textField
+        - all tests failed
+        - added new test: display caption for poc
+        - implementation & fixing unit tests
+          - 1 TODO left (input.value remains empty in test?)
+
+      - personDetails
+        - mock text field directive
+        - actually form is initialized on showPerson() because "view mode" also uses the form
+        - ...in reality I did implementation at the same time as writing the tests because I am still learning how to write the tests
+          - a lot of debugging the tests
+          - i rely a lot on the test list above whenever I lose my train of thought :) 
+
+      - personList
+        - this time try to write the test before implementation as much as possible
+      
+      - appComponent
+        - for some reasons the default app.component.ts looks different
+        
+
+- forgot about the delete person
+  *- app: should call personList.deletePerson(id) when personDetails emits the (deletePerson) event.
+  - personList: should remove the respective person from the list when deletePerson is called
+  - personDetails:
+    - should call deletePerson(id) service method when the delete button is clicked
+    - should emit (deletePerson) event when the delete button is clicked
+
+- I can't believe the app just works... even though all elements are layout vertically
+  - if in edit mode and I select another person, it will be displayed in edit mode immediately
+    - probably should exit edit mode
+
+- but work on basic layout / css first
+  - layouting strategy:
+      - most non-inline elements will @extend .full-box in its :host
+      - parent lays its children out using flex boxes (can be vertical/horizontal)

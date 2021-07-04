@@ -1,0 +1,7 @@
+
+<div *ngFor="let person of persons"
+  class="list-item"
+  (click)="onPersonClicked(person)"
+  >
+  {{person.lastName}}, {{person.firstName}}
+</div>

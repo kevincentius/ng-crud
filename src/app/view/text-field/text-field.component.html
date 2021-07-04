@@ -1,0 +1,14 @@
+
+<div class="caption">{{caption}}</div>
+
+<!-- View Mode -->
+<div *ngIf="!(editMode)" class="value">
+  {{value}}
+</div>
+
+<!-- Edit Mode-->
+<input *ngIf="editMode"
+     class="value-input"
+     [(ngModel)]="value"
+     (ngModelChange)="valueChange.emit($event)"
+     />

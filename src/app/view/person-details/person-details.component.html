@@ -1,0 +1,12 @@
+
+
+<ng-container *ngIf="person != null && editForm != null">
+  <button *ngIf="!editMode" class="btn-edit" (click)="onEdit()">Bearbeiten</button>
+  <button *ngIf="editMode" class="btn-submit" (click)="onSubmit()">Speichern</button>
+  <button class="btn-delete" (click)="onDelete()">Delete</button>
+
+  <app-text-field [caption]="'ID'"          [(value)]="person.id"          [editMode]="editMode"></app-text-field>
+  <app-text-field [caption]="'Nachname'"    [(value)]="editForm.lastName"  [editMode]="editMode"></app-text-field>
+  <app-text-field [caption]="'Vorname'"     [(value)]="editForm.firstName" [editMode]="editMode"></app-text-field>
+  <app-text-field [caption]="'Email'"       [(value)]="editForm.email"     [editMode]="editMode"></app-text-field>
+</ng-container>
